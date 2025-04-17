@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400">
+  <!-- Upper teeth diagram (pink background) -->
+  <path d="M100,50 C150,20 350,20 400,50 C450,100 450,150 400,200 C350,230 150,230 100,200 C50,150 50,100 100,50 Z" fill="#ff8a9e" stroke="#333" stroke-width="2"/>
+  
+  <!-- Lower teeth diagram (pink background) -->
+  <path d="M100,250 C150,220 350,220 400,250 C450,300 450,350 400,380 C350,400 150,400 100,380 C50,350 50,300 100,250 Z" fill="#ff8a9e" stroke="#333" stroke-width="2"/>
+  
+  <!-- Decorative lines in upper diagram -->
+  <path d="M250,50 C250,100 300,150 250,200" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+  <path d="M250,50 C250,100 200,150 250,200" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+  
+  <!-- Decorative lines in lower diagram -->
+  <path d="M250,250 C250,300 300,350 250,380" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+  <path d="M250,250 C250,300 200,350 250,380" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+</svg>
