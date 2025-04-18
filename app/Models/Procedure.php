@@ -20,12 +20,13 @@ class Procedure extends Model
         'description',
         'cost',
         'color_id',
+        'category',
     ];
 
     /**
      * Get the color associated with this procedure
      */
-    public function colors(): BelongsTo
+    public function color(): BelongsTo
     {
         return $this->belongsTo(Color::class);
     }

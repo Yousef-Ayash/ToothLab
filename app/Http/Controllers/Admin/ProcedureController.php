@@ -37,7 +37,7 @@ class ProcedureController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
-            'price' => ['required', 'numeric', 'min:0'],
+            'cost' => ['required', 'numeric', 'min:0'],
             'category' => ['required', 'string', 'max:255'],
             'color_ids' => ['nullable', 'array'],
             'color_ids.*' => ['exists:colors,id'],
@@ -57,8 +57,8 @@ class ProcedureController extends Controller
         $procedure = Procedure::create([
             'name' => $request->name,
             'description' => $request->description,
-            'cost' => $request->price,
-            'color_id' => $request->color_ids[0],
+            'cost' => $request->cost,
+            'color_id' => $request->color_id,
             'category' => $request->category,
         ]);
 
@@ -66,7 +66,7 @@ class ProcedureController extends Controller
 
         // Attach colors if provided
         if ($request->has('color_ids')) {
-            $procedure->colors()->attach($request->color_ids[0]);
+            $procedure->color()->attach($request->color_ids[0]);
         }
 
         // Create steps
@@ -88,7 +88,7 @@ class ProcedureController extends Controller
      */
     public function show(Procedure $procedure)
     {
-        $procedure->load('steps', 'colors');
+        $procedure->load('steps', 'color');
         return view('admin.procedures.show', compact('procedure'));
     }
 
@@ -97,7 +97,7 @@ class ProcedureController extends Controller
      */
     public function edit(Procedure $procedure)
     {
-        $procedure->load('steps', 'colors');
+        $procedure->load('steps', 'color');
         $colors = Color::all();
         return view('admin.procedures.edit', compact('procedure', 'colors'));
     }
@@ -110,7 +110,7 @@ class ProcedureController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
-            'price' => ['required', 'numeric', 'min:0'],
+            'cost' => ['required', 'numeric', 'min:0'],
             'category' => ['required', 'string', 'max:255'],
             'color_ids' => ['nullable', 'array'],
             'color_ids.*' => ['exists:colors,id'],
@@ -128,12 +128,13 @@ class ProcedureController extends Controller
         $procedure->update([
             'name' => $request->name,
             'description' => $request->description,
-            'price' => $request->price,
+            'cost' => $request->cost,
             'category' => $request->category,
+            'color_id' => $request->color_id,
         ]);
 
         // Sync colors
-        $procedure->colors()->sync($request->color_ids ?? []);
+        // $procedure->colors()->sync($request->color_ids ?? []);
 
         // Update steps
         $procedure->steps()->delete(); // Remove existing steps
@@ -164,7 +165,7 @@ class ProcedureController extends Controller
         $procedure->steps()->delete();
 
         // Detach colors
-        $procedure->colors()->detach();
+        // $procedure->colors()->detach();
 
         // Delete procedure
         $procedure->delete();

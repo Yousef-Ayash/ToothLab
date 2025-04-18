@@ -19,6 +19,7 @@ class Step extends Model
         'name',
         'description',
         'order',
+        'duration',
     ];
 
     /**

@@ -61,9 +61,9 @@
                                     <div class="border rounded p-3">
                                         @foreach ($colors as $color)
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="color_ids[]"
+                                                <input class="form-check-input" type="radio" name="color_id"
                                                     value="{{ $color->id }}" id="color{{ $color->id }}"
-                                                    {{ old('color_ids') && in_array($color->id, old('color_ids')) ? 'checked' : '' }}>
+                                                    {{ old('color_id') && in_array($color->id, old('color_id')) ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="color{{ $color->id }}">
                                                     {{ $color->name }}
                                                 </label>
